@@ -10,7 +10,8 @@
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write \"./**/*.{html,vue,ts,js,json,md}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "commitlint": "commitlint --config commitlint.config.cjs -e -V"
   },
   "dependencies": {
     "pinia": "^2.0.36",
@@ -19,6 +20,8 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.7",
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
     "@rushstack/eslint-patch": "^1.2.0",
     "@tsconfig/node18": "^2.0.1",
     "@types/node": "^18.16.8",
