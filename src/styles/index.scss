@@ -1,0 +1,23 @@
+@import './reset.scss';
+// 定义滚动条的基本属性
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+// 滚动条轨道的样式
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+// 设置滚动条的样式
+::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8a8a8;
+}
+*{
+  user-select: none;
+}

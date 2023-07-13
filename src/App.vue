@@ -1,10 +1,19 @@
 <script setup lang="ts">
-for (let i = 0; i < 100; i++) {
-  console.log(i)
-}
-let str = '我在测试功能'
+import { Plus, Edit } from '@element-plus/icons-vue'
+import { reqLogin } from '@/api/user'
+import { onMounted } from 'vue'
+onMounted(() => {
+  reqLogin({
+    username: 'admin',
+    password: '111111',
+  }).then((response) => {
+    console.log(response)
+  })
+})
 </script>
 
-<template></template>
+<template>
+  <router-view></router-view>
+</template>
 
-<style scoped></style>
+<style scoped lang="scss"></style>
