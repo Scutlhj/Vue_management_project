@@ -47,7 +47,7 @@
 <script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue'
 import { reactive, ref, computed, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter,useRoute } from 'vue-router'
 import { ElNotification } from 'element-plus'
 // 引入用户仓库
 import useUserStore from '@/stores/modules/user'
@@ -56,9 +56,10 @@ import { getTime } from '@/utils/time'
 let useStore = useUserStore()
 // 编程式导航
 let $router = useRouter()
+let $route = useRoute()
 let loginForm = reactive({
   username: 'admin',
-  password: '111111',
+  password: 'atguigu123',
 })
 // 定义el-form的实例对象
 let loginElForm = ref()
@@ -121,7 +122,9 @@ const login = async () => {
     // 要是这里异常会跳到error
     // 请求成功到首页,失败弹出失败信息
     await useStore.userLogin(loginForm)
-    $router.push('/')
+    const redirect:any = $route.query.redirect
+    // 登录密码正确这个await才不会出错
+    $router.push({ path:(redirect||'/')})
     ElNotification({
       type: 'success',
       message: '欢迎回来',

@@ -5,6 +5,7 @@ import { constantRoute } from './routes'
 let router = createRouter({
   history: createWebHashHistory(),
   routes: constantRoute,
+  // 路由跳转后滚动条立马返回左上角
   scrollBehavior() {
     return {
       left: 0,

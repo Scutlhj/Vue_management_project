@@ -13,12 +13,13 @@ import 'virtual:svg-icons-register'
 import '@/styles/index.scss'
 // 引入路由
 import router from './router'
+// 引入全局路由守卫
+import '@/router/permission'
 import pinia from './stores'
 
 import App from '@/App.vue'
 const app = createApp(App)
 
-app.use(createPinia())
 app.use(ElementPlus)
 app.use(ElementPlus, {
   locale: zhCn,
