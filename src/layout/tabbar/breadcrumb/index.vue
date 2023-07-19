@@ -9,7 +9,6 @@ import { useRoute } from 'vue-router'
 import useLayoutSettingStore from '@/stores/modules/setting'
 let layoutSettingStore = useLayoutSettingStore()
 let $route = useRoute()
-
 </script>
 
 <template>
@@ -21,7 +20,7 @@ let $route = useRoute()
       v-for="(item, index) in $route.matched"
       :key="index"
       :to="item.path"
-      v-show="item.meta.title&&item.meta.icon"
+      v-show="item.meta.title && item.meta.icon"
     >
       <el-icon class="route_icon">
         <component :is="item.meta.icon"></component>

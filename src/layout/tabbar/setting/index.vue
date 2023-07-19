@@ -2,8 +2,8 @@
 // 获取refresh对象将其修改
 import useLayoutSettingStore from '@/stores/modules/setting'
 // 获取用户信息
-import useUserStore from '@/stores/modules/user';
-import { useRouter, useRoute } from 'vue-router';
+import useUserStore from '@/stores/modules/user'
+import { useRouter, useRoute } from 'vue-router'
 let userStore = useUserStore()
 let layoutSettingStore = useLayoutSettingStore()
 let $route = useRoute()
@@ -17,7 +17,7 @@ const switchFullScreen = () => {
     document.exitFullscreen()
   }
 }
-const logout = async() => {
+const logout = async () => {
   // 清空仓库信息
   await userStore.userLogout()
   // 跳转登录页面,这里有一个小功能就是保存退出时的path然后登录后重新跳回此处而不是首页
@@ -31,10 +31,17 @@ export default {
 </script>
 
 <template>
-  <el-button icon="Refresh" circle @click="layoutSettingStore.changeRefresh()" />
+  <el-button
+    icon="Refresh"
+    circle
+    @click="layoutSettingStore.changeRefresh()"
+  />
   <el-button icon="FullScreen" circle @click="switchFullScreen" />
   <el-button icon="Setting" circle />
-  <img :src="userStore.avatar" style="width: 32px; height: 32px;border-radius:50%;" />
+  <img
+    :src="userStore.avatar"
+    style="width: 32px; height: 32px; border-radius: 50%"
+  />
   <el-dropdown>
     <span class="el-dropdown-link">
       {{ userStore.username }}

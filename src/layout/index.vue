@@ -96,7 +96,6 @@ let $route = useRoute()
 
   .layout_main {
     height: calc(100vh - $base-tabbar-height);
-    background-color: green;
     padding: 20px;
     overflow: auto;
   }

@@ -17,10 +17,9 @@ request.interceptors.request.use((config) => {
   // 不返回config的话请求发不出去
   let userStore = useUserStore()
   // 有token将将其放在请求头中
-  if(userStore.token){
+  if (userStore.token) {
     config.headers.token = userStore.token
   }
-  console.log(config)
   return config
 })
 
@@ -28,7 +27,6 @@ request.interceptors.request.use((config) => {
 request.interceptors.response.use(
   (response) => {
     // 成功回调
-    console.log(response)
     return response.data
   },
   (error) => {

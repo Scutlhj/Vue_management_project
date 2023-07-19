@@ -27,7 +27,11 @@ const goRoute = (vc: any) => {
         </template>
       </el-menu-item>
       <!-- 一个孩子直接渲染其孩子节点 -->
-      <el-menu-item :index="item.children[0].path" v-else-if="item.children.length === 1" @click="goRoute">
+      <el-menu-item
+        :index="item.children[0].path"
+        v-else-if="item.children.length === 1"
+        @click="goRoute"
+      >
         <el-icon>
           <component :is="item.children[0].meta.icon"></component>
         </el-icon>
@@ -36,7 +40,7 @@ const goRoute = (vc: any) => {
         </template>
       </el-menu-item>
       <!-- 有孩子节点且数量大于等于2 -->
-      <el-sub-menu :index="item.path" v-else-if="item.children.length>=2">
+      <el-sub-menu :index="item.path" v-else-if="item.children.length >= 2">
         <template #title>
           <el-icon>
             <component :is="item.meta.icon"></component>

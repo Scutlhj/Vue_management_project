@@ -47,7 +47,7 @@
 <script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue'
 import { reactive, ref, computed, onMounted } from 'vue'
-import { useRouter,useRoute } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { ElNotification } from 'element-plus'
 // 引入用户仓库
 import useUserStore from '@/stores/modules/user'
@@ -122,9 +122,9 @@ const login = async () => {
     // 要是这里异常会跳到error
     // 请求成功到首页,失败弹出失败信息
     await useStore.userLogin(loginForm)
-    const redirect:any = $route.query.redirect
+    const redirect: any = $route.query.redirect
     // 登录密码正确这个await才不会出错
-    $router.push({ path:(redirect||'/')})
+    $router.push({ path: redirect || '/' })
     ElNotification({
       type: 'success',
       message: '欢迎回来',

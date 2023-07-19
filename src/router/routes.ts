@@ -28,9 +28,9 @@ export const constantRoute = [
           title: '首页',
           show: true,
           icon: 'HomeFilled',
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
   {
     path: '/screen',
