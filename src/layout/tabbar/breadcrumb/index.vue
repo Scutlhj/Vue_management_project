@@ -16,17 +16,14 @@ let $route = useRoute()
     <component :is="layoutSettingStore.fold ? 'Fold' : 'Expand'"></component>
   </el-icon>
   <el-breadcrumb separator-icon="ArrowRight">
-    <el-breadcrumb-item
-      v-for="(item, index) in $route.matched"
-      :key="index"
-      :to="item.path"
-      v-show="item.meta.title && item.meta.icon"
-    >
-      <el-icon class="route_icon">
-        <component :is="item.meta.icon"></component>
-      </el-icon>
-      <span>{{ item.meta.title }}</span>
-    </el-breadcrumb-item>
+    <template v-for="(item, index) in $route.matched" :key="index">
+      <el-breadcrumb-item :to="item.path" v-if="item.meta.title && item.meta.icon">
+        <el-icon class="route_icon">
+          <component :is="item.meta.icon"></component>
+        </el-icon>
+        <span>{{ item.meta.title }}</span>
+      </el-breadcrumb-item>
+    </template>
   </el-breadcrumb>
 </template>
 

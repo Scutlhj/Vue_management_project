@@ -7,9 +7,10 @@ import useUserStore from '@/stores/modules/user'
 // 创建axios实例
 let request = axios.create({
   // 基础路径会携带/api
+  //@ts-ignore
   baseURL: import.meta.env.VITE_APP_BASE_API,
   // 设置超时时间
-  timeout: 5000,
+  timeout: 2000,
 })
 // 实例添加请求与响应拦截器
 request.interceptors.request.use((config) => {
@@ -32,6 +33,7 @@ request.interceptors.response.use(
   (error) => {
     // 失败回调
     let message = ''
+    console.log(error)
     let status = error.response.status
     switch (status) {
       case 401:

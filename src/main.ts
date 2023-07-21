@@ -1,10 +1,9 @@
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
 import ElementPlus from 'element-plus'
 // 使用element-plus组件库
 import 'element-plus/dist/index.css'
 //@ts-ignore
-import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 // 全局注册组件,没写具体文件会找index.js
 import globalComponents from '@/components'
 // 使用svg图片
@@ -20,7 +19,6 @@ import pinia from './stores'
 import App from '@/App.vue'
 const app = createApp(App)
 
-app.use(ElementPlus)
 app.use(ElementPlus, {
   locale: zhCn,
 })

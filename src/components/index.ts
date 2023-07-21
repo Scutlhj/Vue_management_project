@@ -1,9 +1,10 @@
 // 在这里定义一个插件全局注册
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import Pagination from '@/components/Pagination/index.vue'
+import Category from '@/components/Category/index.vue'
 // 把所有element-plus图标引入
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-const globalComponents = { SvgIcon, Pagination }
+const globalComponents = { SvgIcon, Pagination, Category }
 
 export default {
   // 插件的方法必须用install

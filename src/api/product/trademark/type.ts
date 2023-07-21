@@ -1,13 +1,13 @@
 interface ResponseData {
-    code: number,
-    message: string,
-    ok: boolean,
+  code: number
+  message: string
+  ok: boolean
 }
 // 已有品牌ts类型
 export interface TrademarkData {
-    id?: number,
-    tmName: string,
-    logoUrl: string
+  id?: number
+  tmName: string
+  logoUrl: string
 }
 // interface可以定义一个类的实例的结构，而type不能。
 // interface可以支持多继承，而type不行。
@@ -16,13 +16,12 @@ export interface TrademarkData {
 export type Records = TrademarkData[]
 
 export interface TrademarkResponseData extends ResponseData {
-    data: {
-        records: Records,
-        total: number,
-        size: number,
-        current: number,
-        searchCount: boolean,
-        pages: number
-    }
-
+  data: {
+    records: Records
+    total: number
+    size: number
+    current: number
+    searchCount: boolean
+    pages: number
+  }
 }

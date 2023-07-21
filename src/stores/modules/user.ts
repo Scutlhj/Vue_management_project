@@ -3,7 +3,11 @@ import { defineStore } from 'pinia'
 // 引入登录接口,获取用户信息接口
 import { reqLogin, reqUserInfo, reqLogout } from '@/api/user'
 // 引入数据类型
-import type { loginForm, loginResponseData, userInfoResponseData } from '@/api/user/type'
+import type {
+  loginForm,
+  loginResponseData,
+  userInfoResponseData,
+} from '@/api/user/type'
 import type { UserState } from './types/type'
 // 引入本地存储工具方法
 import { SET_TOKEN, GET_TOKEN, DELETE_TOKEN } from '@/utils/token'
@@ -52,9 +56,9 @@ let useUserStore = defineStore('User', {
       let result: any = await reqLogout()
       if (result.code === 200) {
         // 数据清空
-          this.token = '',
-          this.username = '',
-          this.avatar = '',
+        ;(this.token = ''),
+          (this.username = ''),
+          (this.avatar = ''),
           DELETE_TOKEN()
         return Promise.resolve('退出成功')
       } else {
