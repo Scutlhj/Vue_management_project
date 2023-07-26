@@ -1,41 +1,43 @@
-export interface ResponseData{
-    code:number,
-    message:string,
-    ok:boolean
+export interface ResponseData {
+  code: number
+  message: string
+  ok: boolean
 }
 
 export interface CategoryObj {
-    id:number|string,
-    name:string,
-    category1Id?:number,
-    category2Id?:number,
+  id: number | string
+  name: string
+  category1Id?: number
+  category2Id?: number
 }
 
-export interface CategoryResponseData extends ResponseData{
-    data:CategoryObj[]
+export interface CategoryResponseData extends ResponseData {
+  data: CategoryObj[]
 }
 
 // 属性值的ts对象,当我们需要新增属性值时其没有id与对应的属性id
-export interface AttrValue{
-    id?:number,
-    valueName:string,
-    attrId?:number,
-    // 这个是用来控制显示输入框还是查看div的
-    show?:boolean
+export interface AttrValue {
+  id?: number
+  valueName: string
+  attrId?: number
+  // 这个是用来控制显示输入框还是查看div的
+  show?: boolean
 }
-// 
+//
 export type AttrValueList = AttrValue[]
 
 // categoryId一开始可能为空
-export interface Attr{
-    id?:number,
-    attrName:string,
-    categoryId:number|string,
-    categoryLevel:number,
-    attrValueList:AttrValueList
+export interface Attr {
+  id?: number
+  attrName: string
+  categoryId: number | string
+  categoryLevel: number
+  attrValueList: AttrValueList
+  // sku里面用的下拉选中的属性值id存储位置
+  attrValueId?:number
 }
-export interface AttrResponseData extends ResponseData{
-    data:Attr[]
+export interface AttrResponseData extends ResponseData {
+  data: Attr[]
 }
 /*
 {

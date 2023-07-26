@@ -17,7 +17,10 @@ let $route = useRoute()
   </el-icon>
   <el-breadcrumb separator-icon="ArrowRight">
     <template v-for="(item, index) in $route.matched" :key="index">
-      <el-breadcrumb-item :to="item.path" v-if="item.meta.title && item.meta.icon">
+      <el-breadcrumb-item
+        :to="item.path"
+        v-if="item.meta.title && item.meta.icon"
+      >
         <el-icon class="route_icon">
           <component :is="item.meta.icon"></component>
         </el-icon>

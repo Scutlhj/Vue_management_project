@@ -157,8 +157,9 @@ onMounted(() => {
           width="80px"
           align="center"
           prop="id"
+          :resizable="false"
         ></el-table-column>
-        <el-table-column label="品牌名称" align="center">
+        <el-table-column label="品牌名称" align="center" :resizable="false">
           <!-- table-column默认展示数据容器为div,可以使用template,三个回传参数row为该行数据,column为该列信息,$index为index -->
           <template #="{ row, column, $index }">
             <pre style="color: black; font-size: 20px; font-weight: bold">{{
@@ -166,12 +167,12 @@ onMounted(() => {
             }}</pre>
           </template>
         </el-table-column>
-        <el-table-column label="品牌Logo" align="center">
+        <el-table-column label="品牌Logo" align="center" :resizable="false">
           <template #="{ row, column, $index }">
             <img :src="row.logoUrl" style="width: 100px; height: 100px" />
           </template>
         </el-table-column>
-        <el-table-column label="品牌操作" align="center">
+        <el-table-column label="品牌操作" align="center" :resizable="false">
           <template #="{ row, column, $index }">
             <el-button
               type="warning"
