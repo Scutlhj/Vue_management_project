@@ -34,7 +34,7 @@ onBeforeUnmount(() => {
         <el-select
           v-model="categoryStore.c1SelectedId"
           @change="getCategory2"
-          :disabled="scene === 0?false:true"
+          :disabled="scene === 0 ? false : true"
         >
           <!-- v-model="" value-key="" placeholder="" clearable filterable @change="" -->
           <el-option
@@ -51,7 +51,7 @@ onBeforeUnmount(() => {
         <el-select
           v-model="categoryStore.c2SelectedId"
           @change="getCategory3"
-          :disabled="scene === 0?false:true"
+          :disabled="scene === 0 ? false : true"
         >
           <el-option
             v-for="(c2, index) in categoryStore.c2Arr"
@@ -62,7 +62,10 @@ onBeforeUnmount(() => {
         </el-select>
       </el-form-item>
       <el-form-item label="三级分类" size="default" label-width="80px">
-        <el-select v-model="categoryStore.c3SelectedId" :disabled="scene === 0?false:true">
+        <el-select
+          v-model="categoryStore.c3SelectedId"
+          :disabled="scene === 0 ? false : true"
+        >
           <el-option
             v-for="(c3, index) in categoryStore.c3Arr"
             :key="c3.id"

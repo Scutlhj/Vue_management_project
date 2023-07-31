@@ -27,7 +27,6 @@ const getAttrList = async () => {
     categoryStore.c2SelectedId as number,
     categoryStore.c3SelectedId as number,
   )
-  console.log(result)
   if (result.code === 200) {
     attrList.value = result.data
     return Promise.resolve('获取属性成功')
@@ -44,9 +43,8 @@ const addAttr = () => {
     categoryId: categoryStore.c3SelectedId,
     categoryLevel: 3,
     attrValueList: [],
-    id:undefined
+    id: undefined,
   })
-
 }
 // 添加属性值的按钮回调
 const addAttrValue = () => {
@@ -69,7 +67,6 @@ const deleteAttrValue = (index: number) => {
 }
 // 修改属性的按钮回调
 const updateAttr = (row: Attr) => {
-  console.log(row)
   scene.value = 1
   // Object.assign本质上是浅拷贝,即会导致attrParams与row指向同一对象,因此如果对attrParams进行操作但不点击保存发请求也会影响我们展示的row
   // 正确的做法是将row深拷贝一份,再使attrParams浅拷贝那份无关的
@@ -177,7 +174,12 @@ watch(
             label="序号"
             :resizable="false"
           />
-          <el-table-column width="150px" label="属性名称" prop="attrName" :resizable="false"/>
+          <el-table-column
+            width="150px"
+            label="属性名称"
+            prop="attrName"
+            :resizable="false"
+          />
           <el-table-column label="属性值名称" :resizable="false">
             <template #="{ row, column, $index }">
               <el-tag
@@ -266,7 +268,12 @@ watch(
               </el-tag>
             </template>
           </el-table-column>
-          <el-table-column label="操作" width="150px" align="center" :resizable="false">
+          <el-table-column
+            label="操作"
+            width="150px"
+            align="center"
+            :resizable="false"
+          >
             <template #="{ row, column, $index }">
               <el-popconfirm
                 width="150px"

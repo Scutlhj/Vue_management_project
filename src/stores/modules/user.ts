@@ -29,7 +29,6 @@ let useUserStore = defineStore('User', {
     // async返回一个promise对象
     async userLogin(data: loginForm) {
       let result: loginResponseData = await reqLogin(data)
-      console.log(result)
       // 成功200,失败201
       if (result.code === 200) {
         this.token = result.data as string

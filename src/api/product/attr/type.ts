@@ -34,7 +34,7 @@ export interface Attr {
   categoryLevel: number
   attrValueList: AttrValueList
   // sku里面用的下拉选中的属性值id存储位置
-  attrValueId?:number
+  attrValueId?: number
 }
 export interface AttrResponseData extends ResponseData {
   data: Attr[]

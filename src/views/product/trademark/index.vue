@@ -83,7 +83,6 @@ const updateTrademark = (row: TrademarkData) => {
 const confirm = async () => {
   await TrademarkForm.value.validate()
   let result = await reqAddOrUpdateTrademark(trademarkFormData)
-  console.log(result)
   if (result.code == 200) {
     // 添加品牌成功,关闭对话框,弹出成功信息,重新获取已有品牌
     dialogFormVisible.value = false
