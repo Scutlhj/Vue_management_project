@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import useUserStore from '@/stores/modules/user';
-import { getTime, getCurrentTime } from '@/utils/time';
-import setting from '@/setting';
-import { onMounted, onUnmounted, ref } from 'vue';
+import useUserStore from '@/stores/modules/user'
+import { getTime, getCurrentTime } from '@/utils/time'
+import setting from '@/setting'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 let userStore = useUserStore()
 let currentTime = ref<string>(getCurrentTime())
 const timer = setInterval(() => {
   currentTime.value = getCurrentTime()
 }, 1000)
 // 在组件销毁时清理定时器
-onUnmounted(() => {
+onBeforeUnmount(() => {
   clearInterval(timer)
 })
 // 组件挂载时更新一次 currentTime 的值
@@ -22,9 +22,13 @@ onMounted(() => {
   <div>
     <el-card>
       <div class="card">
-        <img :src="userStore.avatar" :alt="userStore.username">
+        <img :src="userStore.avatar" :alt="userStore.username" />
         <div class="desc">
-          <h3>{{ getTime() }}好呀{{ userStore.username }},当前时间为{{ currentTime }}</h3>
+          <h3>
+            {{ getTime() }}好呀{{ userStore.username }},当前时间为{{
+              currentTime
+            }}
+          </h3>
           <span>{{ setting.title }}</span>
         </div>
       </div>

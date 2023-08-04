@@ -25,12 +25,12 @@ import Setting from './setting/index.vue'
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background-image: linear-gradient(
-    to right,
-    #ffffff 0%,
-    #eeeeee 50%,
-    #ffffff 100%
-  );
+  // background-image: linear-gradient(
+  //   to right,
+  //   #ffffff 0%,
+  //   #eeeeee 50%,
+  //   #ffffff 100%
+  // );
 
   .tabbar_left,
   .tabbar_right {

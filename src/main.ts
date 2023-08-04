@@ -2,6 +2,8 @@ import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 // 使用element-plus组件库
 import 'element-plus/dist/index.css'
+// element-plus暗黑模式
+import 'element-plus/theme-chalk/dark/css-vars.css'
 //@ts-ignore
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 // 全局注册组件,没写具体文件会找index.js

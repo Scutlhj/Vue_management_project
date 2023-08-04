@@ -1,8 +1,23 @@
 <script lang="ts" setup>
-import { nextTick, onMounted, ref } from 'vue';
-import { reqAddOrUpdateUser, reqDeleteUser, reqGetUserInfo, reqGetUserPager, reqGetUserRole, reqSetUserRole, reqDeleteUserList } from '@/api/acl/user'
-import { UserPagerResponseData, UserRecords, User, UserResponseData, UserRoleData, UserRoleParams } from '@/api/acl/user/type'
-import { ElMessage, ElMessageBox } from 'element-plus';
+import { nextTick, onMounted, ref } from 'vue'
+import {
+  reqAddOrUpdateUser,
+  reqDeleteUser,
+  reqGetUserInfo,
+  reqGetUserPager,
+  reqGetUserRole,
+  reqSetUserRole,
+  reqDeleteUserList,
+} from '@/api/acl/user'
+import {
+  UserPagerResponseData,
+  UserRecords,
+  User,
+  UserResponseData,
+  UserRoleData,
+  UserRoleParams,
+} from '@/api/acl/user/type'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import useUserStore from '@/stores/modules/user'
 import useLayoutSettingStore from '@/stores/modules/setting'
 import { getCurrentTime } from '@/utils/time'
@@ -40,7 +55,8 @@ const handleCheckAllChange = (val: boolean) => {
 const handleCheckedCitiesChange = (value: UserRoleData[]) => {
   const checkedCount = value.length
   checkAll.value = checkedCount === allRoles.value.length
-  isIndeterminate.value = checkedCount > 0 && checkedCount < allRoles.value.length
+  isIndeterminate.value =
+    checkedCount > 0 && checkedCount < allRoles.value.length
 }
 let userParams = ref<User>({
   username: '',
@@ -76,7 +92,7 @@ const rules = {
   password: [
     { required: true, message: '密码不能为空', trigger: 'blur' },
     { min: 5, max: 10, message: '密码长度为五到十位', trigger: 'blur' },
-  ]
+  ],
 }
 const getUserPager = async (pager = 1) => {
   pageNo.value = pager
@@ -106,15 +122,22 @@ const reset = () => {
 }
 const addUser = () => {
   userDrawer.value = true
-  nextTick(() => { form.value.clearValidate() })
+  nextTick(() => {
+    form.value.clearValidate()
+  })
   refresh.value = false
   // JSON这个strify不会解析undefined的属性
-  Object.assign(userParams.value, JSON.parse(JSON.stringify({
-    username: '',
-    password: '',
-    name: '',
-    roleName: ''
-  })))
+  Object.assign(
+    userParams.value,
+    JSON.parse(
+      JSON.stringify({
+        username: '',
+        password: '',
+        name: '',
+        roleName: '',
+      }),
+    ),
+  )
   userParams.value.id = undefined
   userParams.value.createTime = undefined
   userParams.value.updateTime = undefined
@@ -150,13 +173,11 @@ const deleteUser = async (row: User) => {
 const batchDeleteUser = () => {
   // 整理数据
   let idList: number[] = checkedUser.value.map((item: User) => item.id!)
-  ElMessageBox.confirm('确定批量删除吗?', '提示',
-    {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      type: 'warning',
-    }
-  )
+  ElMessageBox.confirm('确定批量删除吗?', '提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning',
+  })
     .then(async () => {
       let result = await reqDeleteUserList(idList)
       if (result.code === 200) {
@@ -215,7 +236,7 @@ const setRoleConfirm = async () => {
     userId: userParams.value.id!,
     roleIdList: checkedRoles.value.map((item) => {
       return item.id!
-    })
+    }),
   }
   let result = await reqSetUserRole(data)
   if (result.code === 200) {
@@ -234,49 +255,137 @@ onMounted(() => {
 
 <template>
   <div>
-    <el-card style="margin-bottom: 20px;">
+    <el-card style="margin-bottom: 20px">
       <el-form :inline="true" class="search_form">
         <el-form-item label="用户名:">
-          <el-input placeholder="请输入用户名" size="default" clearable v-model="keyword" :disabled="lockInput"
-            :title="lockInput ? '点击重置清除输入框' : ''"></el-input>
+          <el-input
+            placeholder="请输入用户名"
+            size="default"
+            clearable
+            v-model="keyword"
+            :disabled="lockInput"
+            :title="lockInput ? '点击重置清除输入框' : ''"
+          ></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" :disabled="keyword === '' ? true : false" @click="searchUserPager">搜索</el-button>
+          <el-button
+            type="primary"
+            :disabled="keyword === '' ? true : false"
+            @click="searchUserPager"
+          >
+            搜索
+          </el-button>
           <el-button @click="reset">重置</el-button>
         </el-form-item>
       </el-form>
     </el-card>
     <el-card>
       <el-button type="primary" @click="addUser">添加用户</el-button>
-      <el-button type="danger" @click="batchDeleteUser" :disabled="checkedUser.length > 0 ? false : true">批量删除</el-button>
-      <el-table :data="userPager" border style="margin: 20px 0;" row-key="id"
-        @selection-change="(selection: UserRecords) => { checkedUser = selection }">
-        <el-table-column type="selection" width="50px" align="center" :resizable="false" />
-        <el-table-column type="index" width="80px" label="序号" align="center" :resizable="false" />
-        <el-table-column label="id" width="100px" :resizable="false" prop="id" />
+      <el-button
+        type="danger"
+        @click="batchDeleteUser"
+        :disabled="checkedUser.length > 0 ? false : true"
+      >
+        批量删除
+      </el-button>
+      <el-table
+        :data="userPager"
+        border
+        style="margin: 20px 0"
+        row-key="id"
+        @selection-change="(selection: UserRecords) => { checkedUser = selection }"
+      >
+        <el-table-column
+          type="selection"
+          width="50px"
+          align="center"
+          :resizable="false"
+        />
+        <el-table-column
+          type="index"
+          width="80px"
+          label="序号"
+          align="center"
+          :resizable="false"
+        />
+        <el-table-column
+          label="id"
+          width="100px"
+          :resizable="false"
+          prop="id"
+        />
         <el-table-column label="用户名" :resizable="false" prop="username" />
         <el-table-column label="用户名称" :resizable="false" prop="name" />
-        <el-table-column label="用户角色" :show-overflow-tooltip="true" :resizable="false" prop="roleName" />
-        <el-table-column label="创建时间" :show-overflow-tooltip="true" :resizable="false" prop="createTime" />
-        <el-table-column label="更新时间" :show-overflow-tooltip="true" :resizable="false" prop="updateTime" />
-        <el-table-column label="操作" width="270px" align="center" :resizable="false">
+        <el-table-column
+          label="用户角色"
+          :show-overflow-tooltip="true"
+          :resizable="false"
+          prop="roleName"
+        />
+        <el-table-column
+          label="创建时间"
+          :show-overflow-tooltip="true"
+          :resizable="false"
+          prop="createTime"
+        />
+        <el-table-column
+          label="更新时间"
+          :show-overflow-tooltip="true"
+          :resizable="false"
+          prop="updateTime"
+        />
+        <el-table-column
+          label="操作"
+          width="270px"
+          align="center"
+          :resizable="false"
+        >
           <template #="{ row, $index }">
-            <el-button type="success" icon="User" size="small" @click="editRole(row)">分配角色</el-button>
-            <el-button type="primary" icon="Edit" size="small" @click="editUser(row)">编辑</el-button>
-            <el-popconfirm width="200" confirm-button-text="确定" cancel-button-text="取消" icon="Delete" icon-color="#626AEF"
-              :title="`你确认删除${row.username}吗?`" @confirm="deleteUser(row)">
+            <el-button
+              type="success"
+              icon="User"
+              size="small"
+              @click="editRole(row)"
+            >
+              分配角色
+            </el-button>
+            <el-button
+              type="primary"
+              icon="Edit"
+              size="small"
+              @click="editUser(row)"
+            >
+              编辑
+            </el-button>
+            <el-popconfirm
+              width="200"
+              confirm-button-text="确定"
+              cancel-button-text="取消"
+              icon="Delete"
+              icon-color="#626AEF"
+              :title="`你确认删除${row.username}吗?`"
+              @confirm="deleteUser(row)"
+            >
               <template #reference>
-                <el-button type="danger" icon="Delete" size="small">删除</el-button>
+                <el-button type="danger" icon="Delete" size="small">
+                  删除
+                </el-button>
               </template>
             </el-popconfirm>
           </template>
         </el-table-column>
       </el-table>
-      <el-pagination @size-change="getUserPager()" @current-change="getUserPager" v-model:currentPage="pageNo"
-        :page-sizes="[5, 7, 9, 11]" v-model:page-size="pageSize" layout="prev, pager, next, jumper,->,sizes,total "
-        :total="total" background :pager-count="7">
-      </el-pagination>
-
+      <el-pagination
+        @size-change="getUserPager()"
+        @current-change="getUserPager"
+        v-model:currentPage="pageNo"
+        :page-sizes="[5, 7, 9, 11]"
+        v-model:page-size="pageSize"
+        layout="prev, pager, next, jumper,->,sizes,total "
+        :total="total"
+        background
+        :pager-count="7"
+      ></el-pagination>
     </el-card>
     <el-drawer v-model="userDrawer" size="30%">
       <template #header>
@@ -284,15 +393,37 @@ onMounted(() => {
       </template>
       <!-- 此处为drawer内容区 -->
       <template #default>
-        <el-form :model="userParams" ref="form" label-width="80px" size="default" :rules="rules">
+        <el-form
+          :model="userParams"
+          ref="form"
+          label-width="80px"
+          size="default"
+          :rules="rules"
+        >
           <el-form-item label="用户名" prop="username">
-            <el-input v-model="userParams.username" type="text" @paste.native.capture.prevent="false"></el-input>
+            <el-input
+              v-model="userParams.username"
+              type="text"
+              @paste.native.capture.prevent="false"
+            ></el-input>
           </el-form-item>
           <el-form-item label="用户名称" prop="name">
-            <el-input v-model="userParams.name" type="text" @paste.native.capture.prevent="false"></el-input>
+            <el-input
+              v-model="userParams.name"
+              type="text"
+              @paste.native.capture.prevent="false"
+            ></el-input>
           </el-form-item>
-          <el-form-item label="密码" prop="password" v-if="userParams.id ? false : true">
-            <el-input v-model="userParams.password" type="password" @paste.native.capture.prevent="false"></el-input>
+          <el-form-item
+            label="密码"
+            prop="password"
+            v-if="userParams.id ? false : true"
+          >
+            <el-input
+              v-model="userParams.password"
+              type="password"
+              @paste.native.capture.prevent="false"
+            ></el-input>
           </el-form-item>
         </el-form>
       </template>
@@ -311,15 +442,32 @@ onMounted(() => {
       <template #default>
         <el-form label-width="80px" size="default">
           <el-form-item label="用户名">
-            <el-input v-model="userParams.username" type="text" :disabled="true"></el-input>
+            <el-input
+              v-model="userParams.username"
+              type="text"
+              :disabled="true"
+            ></el-input>
           </el-form-item>
           <el-form-item label="职位列表" size="default">
-            <el-checkbox v-model="checkAll" :indeterminate="isIndeterminate"
-              @change="handleCheckAllChange" style="margin-right: 30px;">全选</el-checkbox>
-            <el-checkbox-group v-model="checkedRoles" @change="handleCheckedCitiesChange">
-              <el-checkbox v-for="checkedRole in allRoles" :key="checkedRole.id" :label="checkedRole">{{
-                checkedRole.roleName
-              }}</el-checkbox>
+            <el-checkbox
+              v-model="checkAll"
+              :indeterminate="isIndeterminate"
+              @change="handleCheckAllChange"
+              style="margin-right: 30px"
+            >
+              全选
+            </el-checkbox>
+            <el-checkbox-group
+              v-model="checkedRoles"
+              @change="handleCheckedCitiesChange"
+            >
+              <el-checkbox
+                v-for="checkedRole in allRoles"
+                :key="checkedRole.id"
+                :label="checkedRole"
+              >
+                {{ checkedRole.roleName }}
+              </el-checkbox>
             </el-checkbox-group>
           </el-form-item>
         </el-form>
