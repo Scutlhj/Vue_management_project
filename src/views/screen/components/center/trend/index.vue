@@ -1,14 +1,22 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue'
 import * as echarts from 'echarts'
 defineOptions({
   name: 'Trend',
 })
-let xLabel = ['5月18日', '5月25日', '5月29日', '6月2日', '6月7日', '6月12日', '6月17日'];
-let dataValue = [1492887, 1588793, 1213194, 1312932, 1625621, 1432134, 1523455];
+let xLabel = [
+  '5月18日',
+  '5月25日',
+  '5月29日',
+  '6月2日',
+  '6月7日',
+  '6月12日',
+  '6月17日',
+]
+let dataValue = [1492887, 1588793, 1213194, 1312932, 1625621, 1432134, 1523455]
 let charts = ref()
 onMounted(() => {
-  const myChart = echarts.init(charts.value);
+  const myChart = echarts.init(charts.value)
   myChart.setOption({
     backgroundColor: 'rgb(18,20,75)',
     tooltip: {
@@ -28,8 +36,8 @@ onMounted(() => {
       textStyle: {
         color: '#fff',
         fontSize: 18,
-        padding: [0, 8, 0, 8]
-      }
+        padding: [0, 8, 0, 8],
+      },
     },
     grid: {
       top: '10%',
@@ -72,7 +80,7 @@ onMounted(() => {
           show: true,
           lineStyle: {
             color: '#1160a0',
-            type: 'dashed'
+            type: 'dashed',
           },
         },
         axisLine: {
@@ -84,13 +92,12 @@ onMounted(() => {
         axisLabel: {
           show: true,
           color: '#fff',
-          fontSize: 14
+          fontSize: 14,
         },
         axisTick: {
           show: false,
         },
       },
-
     ],
     series: [
       {
@@ -104,29 +111,33 @@ onMounted(() => {
           color: '#fb6663', // 线条颜色
         },
         itemStyle: {
-          color: '#fd8180',//拐点颜色
+          color: '#fd8180', //拐点颜色
         },
-        symbolSize: 8,   //设定实心点的大小
+        symbolSize: 8, //设定实心点的大小
         areaStyle: {
           //线性渐变，前4个参数分别是x0,y0,x1,y1(范围0~1);相当于图形包围盒中的百分比。如果最后一个参数是‘true’，则该四个值是绝对像素位置。
-          color: new echarts.graphic.LinearGradient(0, 1, 1, 1,
+          color: new echarts.graphic.LinearGradient(
+            0,
+            1,
+            1,
+            1,
             [
               {
                 offset: 0,
-                color: '#ee3f4d30'
+                color: '#ee3f4d30',
               },
               {
                 offset: 1,
                 color: '#ee3f4d20',
               },
             ],
-            false
+            false,
           ),
         },
         data: dataValue,
       },
-    ]
-  });
+    ],
+  })
 })
 </script>
 
@@ -136,7 +147,10 @@ onMounted(() => {
       <div class="left_title">
         <span>未来30天游客趋势图</span>
       </div>
-      <img src="../../../images/dataScreen-title.png" style="height: 7px; width: 68px; display: block; margin-top: 10px;">
+      <img
+        src="../../../images/dataScreen-title.png"
+        style="height: 7px; width: 68px; display: block; margin-top: 10px"
+      />
     </div>
     <div class="trend_main">
       <div class="trend_charts" ref="charts"></div>
@@ -152,7 +166,7 @@ onMounted(() => {
   background: url('../../../images/dataScreen-main-cb.png') no-repeat;
   background-size: 100% 100%;
   font-size: 18px;
-  color: rgba(255, 255, 255, .9);
+  color: rgba(255, 255, 255, 0.9);
   background-clip: content-box;
   display: flex;
   flex-direction: column;

@@ -121,6 +121,7 @@ watch(
           icon="Plus"
           :disabled="categoryStore.c3SelectedId ? false : true"
           @click="addSpu"
+          v-has="'btn.Spu.add'"
         >
           添加SPU
         </el-button>
@@ -144,7 +145,7 @@ watch(
             show-overflow-tooltip
             :resizable="false"
           ></el-table-column>
-          <el-table-column label="操作" :resizable="false" width="250px">
+          <el-table-column label="操作" :resizable="false" width="250px" align="center">
             <template #="{ row, $index }">
               <el-button
                 type="primary"
@@ -152,6 +153,7 @@ watch(
                 icon="Plus"
                 title="添加SKU"
                 @click="addSku(row)"
+                v-has="'btn.Spu.addsku'"
               ></el-button>
               <el-button
                 type="warning"
@@ -159,6 +161,7 @@ watch(
                 icon="Edit"
                 title="修改SPU"
                 @click="editSpu(row)"
+                v-has="'btn.Spu.update'"
               ></el-button>
               <el-button
                 type="info"
@@ -166,6 +169,7 @@ watch(
                 icon="View"
                 title="查看SKU列表"
                 @click="getSkuList(row)"
+                v-has="'btn.Spu.skus'"
               ></el-button>
               <el-popconfirm
                 width="220"
@@ -182,6 +186,7 @@ watch(
                     size="default"
                     icon="Delete"
                     title="删除SPU"
+                    v-has="'btn.Spu.delete'"
                   ></el-button>
                 </template>
               </el-popconfirm>

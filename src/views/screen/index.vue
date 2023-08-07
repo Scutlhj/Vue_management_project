@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue'
 import Top from './components/top/index.vue'
 import Tourist from './components/left/tourist/index.vue'
 import Gender from './components/left/gender/index.vue'

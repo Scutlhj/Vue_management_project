@@ -163,6 +163,7 @@ watch(
           icon="Plus"
           :disabled="categoryStore.c3SelectedId ? false : true"
           @click="addAttr"
+          v-has="'btn.Attr.add'"
         >
           添加平台属性
         </el-button>
@@ -192,13 +193,14 @@ watch(
               </el-tag>
             </template>
           </el-table-column>
-          <el-table-column width="150px" label="操作" :resizable="false">
+          <el-table-column width="150px" label="操作" :resizable="false" align="center">
             <template #="{ row, column, $index }">
               <el-button
                 type="warning"
                 size="default"
                 icon="Edit"
                 @click="updateAttr(row)"
+                v-has="'btn.Attr.update'"
               ></el-button>
               <el-popconfirm
                 width="200px"
@@ -214,6 +216,7 @@ watch(
                     type="danger"
                     size="default"
                     icon="Delete"
+                    v-has="'btn.Attr.remove'"
                   ></el-button>
                 </template>
               </el-popconfirm>

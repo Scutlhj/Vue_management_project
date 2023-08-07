@@ -207,7 +207,7 @@ const defaultProps = {
       </el-form>
     </el-card>
     <el-card>
-      <el-button type="primary" size="default" icon="Plus" @click="addRole">
+      <el-button type="primary" size="default" icon="Plus" @click="addRole" v-has="'btn.Role.add'">
         添加职位
       </el-button>
       <el-table :data="rolePager" border style="margin: 20px 0">
@@ -255,6 +255,7 @@ const defaultProps = {
               type="success"
               size="small"
               @click="editPermissions(row)"
+              v-has="'btn.Role.assgin'"
             >
               分配权限
             </el-button>
@@ -263,6 +264,7 @@ const defaultProps = {
               type="primary"
               size="small"
               @click="editRole(row)"
+              v-has="'btn.Role.update'"
             >
               编辑
             </el-button>
@@ -276,7 +278,7 @@ const defaultProps = {
               @confirm="deleteRole(row)"
             >
               <template #reference>
-                <el-button icon="Delete" type="danger" size="small">
+                <el-button icon="Delete" type="danger" size="small" v-has="'btn.Role.remove'">
                   删除
                 </el-button>
               </template>

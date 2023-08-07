@@ -17,7 +17,8 @@ import router from './router'
 // 引入全局路由守卫
 import '@/router/permission'
 import pinia from './stores'
-
+// 引入全局自定义指令
+import hasButton from './directives/hasButton'
 import App from '@/App.vue'
 const app = createApp(App)
 
@@ -27,4 +28,5 @@ app.use(ElementPlus, {
 app.use(globalComponents)
 app.use(router)
 app.use(pinia)
+hasButton(app)
 app.mount('#app')

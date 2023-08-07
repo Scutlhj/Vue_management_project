@@ -142,25 +142,28 @@ onMounted(() => {
         :resizable="false"
         prop="price"
       />
-      <el-table-column label="操作" fixed="right" :resizable="false">
+      <el-table-column label="操作" fixed="right" :resizable="false" align="center">
         <template #="{ row, $index }">
           <el-button
             :type="row.isSale === 1 ? 'info' : 'success'"
             :icon="row.isSale === 1 ? 'Bottom' : 'Top'"
             :title="row.isSale === 1 ? '下架商品' : '上架商品'"
             @click="switchSale(row)"
+            v-has="'btn.Sku.updown'"
           ></el-button>
           <el-button
             type="primary"
             icon="Edit"
             title="编辑SKU"
             @click="editSku()"
+            v-has="'btn.Sku.update'"
           ></el-button>
           <el-button
             type="info"
             icon="InfoFilled"
             title="查看SKU"
             @click="showSku(row)"
+            v-has="'btn.Sku.detail'"
           ></el-button>
           <el-popconfirm
             width="300"
@@ -176,6 +179,7 @@ onMounted(() => {
                 type="danger"
                 icon="Delete"
                 title="删除SKU"
+                v-has="'btn.Sku.remove'"
               ></el-button>
             </template>
           </el-popconfirm>

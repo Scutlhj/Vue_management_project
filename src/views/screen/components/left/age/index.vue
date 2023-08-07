@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue'
 import * as echarts from 'echarts'
 defineOptions({
   name: 'Age',
 })
 let charts = ref()
 onMounted(() => {
-  const myChart = echarts.init(charts.value);
+  const myChart = echarts.init(charts.value)
   myChart.setOption({
     tooltip: {
-      trigger: 'item'
+      trigger: 'item',
     },
     // 图例组件
     legend: {
@@ -28,7 +28,7 @@ onMounted(() => {
       top: 0,
       bottom: 0,
       left: 0,
-      right: 0
+      right: 0,
     },
     series: [
       {
@@ -39,7 +39,7 @@ onMounted(() => {
         itemStyle: {
           borderRadius: 10,
           borderColor: '#fff',
-          borderWidth: 2
+          borderWidth: 2,
         },
         label: {
           show: true,
@@ -47,15 +47,15 @@ onMounted(() => {
           color: 'white',
           formatter: (res: any) => {
             if (res.value) {
-              return res.value*100+'%'
+              return res.value * 100 + '%'
             } else {
               return 0
             }
-          }
+          },
         },
         center: ['30%', '50%'],
         labelLine: {
-          show: false
+          show: false,
         },
         data: [
           { value: 16, name: '10岁以下' },
@@ -63,15 +63,15 @@ onMounted(() => {
           { value: 12, name: '18-30岁' },
           { value: 24, name: '30-40岁' },
           { value: 20, name: '40-60岁' },
-          { value: 20, name: '60岁以上' }
+          { value: 20, name: '60岁以上' },
         ].map(function (item) {
           return {
             value: item.value / 100, // 将百分比转换成小数
-            name: item.name
-          };
-        })
-      }
-    ]
+            name: item.name,
+          }
+        }),
+      },
+    ],
   })
 })
 </script>
@@ -82,11 +82,13 @@ onMounted(() => {
       <div class="left_title">
         <span>年龄比例</span>
       </div>
-      <img src="../../../images/dataScreen-title.png" style="height: 7px; width: 68px; display: block; margin-top: 10px;">
+      <img
+        src="../../../images/dataScreen-title.png"
+        style="height: 7px; width: 68px; display: block; margin-top: 10px"
+      />
     </div>
     <div class="age_main">
-      <div class="age_charts" ref="charts">
-      </div>
+      <div class="age_charts" ref="charts"></div>
     </div>
   </div>
 </template>
@@ -97,7 +99,7 @@ onMounted(() => {
   background-size: 100% 100%;
   margin: 20px 0;
   font-size: 18px;
-  color: rgba(#fff, .9);
+  color: rgba(#fff, 0.9);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

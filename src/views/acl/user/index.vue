@@ -153,8 +153,12 @@ const editUser = async (row: User) => {
     Object.assign(userParams.value, JSON.parse(JSON.stringify(result.data)))
     // 判断是否为自己的信息
     if (result.data.username === userStore.username) {
+      console.log(111);
+      
       refresh.value = true
     } else {
+      console.log(222);
+      
       refresh.value = false
     }
   } else {
@@ -280,11 +284,12 @@ onMounted(() => {
       </el-form>
     </el-card>
     <el-card>
-      <el-button type="primary" @click="addUser">添加用户</el-button>
+      <el-button type="primary" @click="addUser" v-has="'btn.User.add'">添加用户</el-button>
       <el-button
         type="danger"
         @click="batchDeleteUser"
         :disabled="checkedUser.length > 0 ? false : true"
+        v-has="'btn.User.remove'"
       >
         批量删除
       </el-button>
@@ -346,6 +351,7 @@ onMounted(() => {
               icon="User"
               size="small"
               @click="editRole(row)"
+              v-has="'btn.User.assgin'"
             >
               分配角色
             </el-button>
@@ -354,6 +360,7 @@ onMounted(() => {
               icon="Edit"
               size="small"
               @click="editUser(row)"
+              v-has="'btn.User.update'"
             >
               编辑
             </el-button>
@@ -367,7 +374,7 @@ onMounted(() => {
               @confirm="deleteUser(row)"
             >
               <template #reference>
-                <el-button type="danger" icon="Delete" size="small">
+                <el-button type="danger" icon="Delete" size="small" v-has="'btn.User.remove'">
                   删除
                 </el-button>
               </template>

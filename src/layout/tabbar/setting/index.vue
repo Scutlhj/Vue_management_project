@@ -4,7 +4,7 @@ import useLayoutSettingStore from '@/stores/modules/setting'
 // 获取用户信息
 import useUserStore from '@/stores/modules/user'
 import { useRouter, useRoute } from 'vue-router'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 defineOptions({
   name: 'Setting',
 })
@@ -56,10 +56,17 @@ const changeTheme = () => {
   html.style.setProperty('--el-color-success', color.value)
 }
 const logout = async () => {
+  let username = userStore.username
   // 清空仓库信息
   await userStore.userLogout()
   // 跳转登录页面,这里有一个小功能就是保存退出时的path然后登录后重新跳回此处而不是首页
-  $router.push({ path: '/login', query: { redirect: $route.path } })
+  $router.push({
+    path: '/login',
+    query: { 
+      redirect: $route.path,
+      username: username
+    }
+  })
 }
 </script>
 

@@ -5,36 +5,17 @@
       <el-col :span="12" :xs="0"></el-col>
       <el-col :span="12" :xs="24">
         <!-- 配置表单校验时一定要将model和rule添加到form组件上，其次rule的属性名要与model绑定的名要一致，最后prop也得和model属性名对上 -->
-        <el-form
-          class="login_form"
-          :model="loginForm"
-          :rules="rules"
-          ref="loginElForm"
-        >
+        <el-form class="login_form" :model="loginForm" :rules="rules" ref="loginElForm">
           <h1>Hello</h1>
           <h2>欢迎来到硅谷甄选</h2>
           <el-form-item prop="username">
-            <el-input
-              :prefix-icon="User"
-              v-model="loginForm.username"
-            ></el-input>
+            <el-input :prefix-icon="User" v-model="loginForm.username" clearable></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input
-              type="password"
-              :prefix-icon="Lock"
-              v-model="loginForm.password"
-              show-password
-            ></el-input>
+            <el-input type="password" :prefix-icon="Lock" v-model="loginForm.password" show-password></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button
-              :loading="loading"
-              class="login_btn"
-              size="default"
-              type="primary"
-              @click="login"
-            >
+            <el-button :loading="loading" class="login_btn" size="default" type="primary" @click="login">
               登录
             </el-button>
           </el-form-item>
@@ -46,14 +27,14 @@
 
 <script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue'
-import { reactive, ref, computed, onMounted } from 'vue'
+import { reactive, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { ElNotification } from 'element-plus'
 // 引入用户仓库
 import useUserStore from '@/stores/modules/user'
 // 引入时间工具类
 import { getTime } from '@/utils/time'
-let useStore = useUserStore()
+let userStore = useUserStore()
 // 编程式导航
 let $router = useRouter()
 let $route = useRoute()
@@ -87,7 +68,7 @@ const rules = {
 
 const login = async () => {
   try {
-    await loginElForm.value.validate()
+    // await loginElForm.value.validate()
   } catch (error: any) {
     // 在这里输出错误提示信息
     // 错误信息的格式是一个对象，其中每个键对应一个表单项，值是一个数组，包含该表单项校验失败的所有错误信息
@@ -121,10 +102,16 @@ const login = async () => {
   try {
     // 要是这里异常会跳到error
     // 请求成功到首页,失败弹出失败信息
-    await useStore.userLogin(loginForm)
+    await userStore.userLogin(loginForm)
     const redirect: any = $route.query.redirect
+    const username: any = $route.query.username
     // 登录密码正确这个await才不会出错
-    $router.push({ path: redirect || '/' })
+    if (loginForm.username === username) {
+      console.log('用户名对上了')
+      $router.push({ path: redirect || '/' })
+    } else {
+      $router.push({ path: '/' })
+    }
     ElNotification({
       type: 'success',
       message: '欢迎回来',

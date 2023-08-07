@@ -31,7 +31,7 @@ router.beforeEach(
           try {
             // 尝试通过token获取用户信息,获取成功后放行,每次切换路由时如果没有username都会尝试获取
             await userStore.getUserInfo()
-            next()
+            next(to)
           } catch (error) {
             // token过期或者手动改了token,也得添加await等到退出完再重定向
             await userStore.userLogout()

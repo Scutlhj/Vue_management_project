@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted } from 'vue'
 import * as echarts from 'echarts'
 defineOptions({
   name: 'Platform',
@@ -8,19 +8,19 @@ let charts = ref()
 const platformData = [
   {
     name: '智慧文旅',
-    value: 400000
+    value: 400000,
   },
   {
     name: '携程',
-    value: 100000
+    value: 100000,
   },
   {
     name: '飞猪',
-    value: 200000
+    value: 200000,
   },
   {
     name: '其他平台',
-    value: 300000
+    value: 300000,
   },
 ]
 
@@ -28,7 +28,7 @@ let totalNumber = platformData.reduce((accumulator, currentValue) => {
   return accumulator + currentValue.value
 }, 0)
 onMounted(() => {
-  let myChart = echarts.init(charts.value);
+  let myChart = echarts.init(charts.value)
   myChart.setOption({
     backgroundColor: 'rgb(18,20,75)',
     legend: {
@@ -42,7 +42,7 @@ onMounted(() => {
         color: '#fff',
         fontSize: 16,
       },
-      data: platformData.map(item => item.name),
+      data: platformData.map((item) => item.name),
     },
     tooltip: {
       trigger: 'item',
@@ -59,7 +59,7 @@ onMounted(() => {
           position: 'inside',
           color: 'white',
           formatter: (res: any) => {
-            return res.value / totalNumber * 100 + '%'
+            return (res.value / totalNumber) * 100 + '%'
           },
         },
         data: platformData,
@@ -113,7 +113,7 @@ onMounted(() => {
         data: [1],
         silent: true,
       },
-    ]
+    ],
   })
 })
 </script>
@@ -124,7 +124,10 @@ onMounted(() => {
       <div class="left_title">
         <span>预约渠道数据统计</span>
       </div>
-      <img src="../../../images/dataScreen-title.png" style="height: 7px; width: 68px; display: block; margin-top: 10px;">
+      <img
+        src="../../../images/dataScreen-title.png"
+        style="height: 7px; width: 68px; display: block; margin-top: 10px"
+      />
     </div>
     <div class="platform_main">
       <div class="platform_charts" ref="charts"></div>
@@ -138,7 +141,7 @@ onMounted(() => {
   background: url('../../../images/dataScreen-main-rb.png') no-repeat;
   background-size: 100% 100%;
   font-size: 18px;
-  color: rgba(#fff, .9);
+  color: rgba(#fff, 0.9);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

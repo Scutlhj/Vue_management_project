@@ -122,40 +122,20 @@ onMounted(() => {
       <el-table-column label="权限值" prop="code" :resizable="false" />
       <el-table-column label="创建时间" prop="createTime" :resizable="false" />
       <el-table-column label="修改时间" prop="updateTime" :resizable="false" />
-      <el-table-column
-        width="250px"
-        label="操作"
-        align="center"
-        :resizable="false"
-      >
+      <el-table-column width="250px" label="操作" align="center" :resizable="false">
         <template #="{ row, $index }">
-          <el-button
-            size="small"
-            type="success"
-            :disabled="row.level === 4"
-            @click="addPermission(row)"
-          >
+          <el-button size="small" type="success" :disabled="row.level === 4" @click="addPermission(row)"
+            v-has="'btn.Permission.add'">
             {{ row.level === 3 ? '添加功能' : '添加菜单' }}
           </el-button>
-          <el-button
-            size="small"
-            type="primary"
-            :disabled="row.level === 1"
-            @click="editPermission(row)"
-          >
+          <el-button size="small" type="primary" :disabled="row.level === 1" @click="editPermission(row)"
+            v-has="'btn.Permission.update'">
             编辑
           </el-button>
-          <el-popconfirm
-            width="200"
-            confirm-button-text="确认"
-            cancel-button-text="取消"
-            icon="Delete"
-            icon-color="#626AEF"
-            :title="`确认删除${row.name}吗?`"
-            @confirm="deletePermission(row)"
-          >
+          <el-popconfirm width="200" confirm-button-text="确认" cancel-button-text="取消" icon="Delete" icon-color="#626AEF"
+            :title="`确认删除${row.name}吗?`" @confirm="deletePermission(row)">
             <template #reference>
-              <el-button size="small" type="danger" :disabled="row.level === 1">
+              <el-button size="small" type="danger" :disabled="row.level === 1" v-has="'btn.Permission.remove'">
                 删除
               </el-button>
             </template>
@@ -163,21 +143,11 @@ onMounted(() => {
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog
-      v-model="dialogFormVisible"
-      :title="
-        permissionParams.id
-          ? `编辑${permissionParams.level === 4 ? '功能' : '菜单'}`
-          : `添加${permissionParams.level === 4 ? '功能' : '菜单'}`
-      "
-      width="35%"
-    >
-      <el-form
-        label-width="80px"
-        :model="permissionParams"
-        :rules="rules"
-        ref="form"
-      >
+    <el-dialog v-model="dialogFormVisible" :title="permissionParams.id
+        ? `编辑${permissionParams.level === 4 ? '功能' : '菜单'}`
+        : `添加${permissionParams.level === 4 ? '功能' : '菜单'}`
+      " width="35%">
+      <el-form label-width="80px" :model="permissionParams" :rules="rules" ref="form">
         <el-form-item label="名称" prop="name">
           <el-input v-model.trim="permissionParams.name" />
         </el-form-item>

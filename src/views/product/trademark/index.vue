@@ -144,7 +144,7 @@ onMounted(() => {
     <el-card class="box-card">
       <template #header>
         <div class="card-header">
-          <el-button type="primary" icon="Plus" @click="addTrademark">
+          <el-button type="primary" icon="Plus" @click="addTrademark" v-has="'btn.Trademark.add'">
             添加品牌
           </el-button>
         </div>
@@ -178,6 +178,7 @@ onMounted(() => {
               size="default"
               icon="Edit"
               @click="updateTrademark(row)"
+              v-has="'btn.Trademark.update'"
             ></el-button>
             <el-popconfirm
               width="150px"
@@ -193,6 +194,7 @@ onMounted(() => {
                   type="danger"
                   size="default"
                   icon="Delete"
+                  v-has="'btn.Trademark.remove'"
                 ></el-button>
               </template>
             </el-popconfirm>

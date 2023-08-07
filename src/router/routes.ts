@@ -23,6 +23,7 @@ export const constantRoute = [
     children: [
       {
         path: '/home',
+        name:'home',
         component: () => import('@/views/home/index.vue'),
         meta: {
           title: '首页',
@@ -42,6 +43,20 @@ export const constantRoute = [
       icon: 'Platform',
     },
   },
+  {
+    path: '/404',
+    component: () => import('@/views/404/index.vue'),
+    name: '404',
+    meta: {
+      title: '404',
+      show: false,
+      icon: 'House',
+    },
+  },
+]
+
+// 根据用户权限动态添加的路由
+export const asyncRoute = [
   {
     path: '/acl',
     // 首先要搞清楚为什么component是这个,这个Acl是一级路由
@@ -142,16 +157,9 @@ export const constantRoute = [
       },
     ],
   },
-  {
-    path: '/404',
-    component: () => import('@/views/404/index.vue'),
-    name: '404',
-    meta: {
-      title: '404',
-      show: false,
-      icon: 'House',
-    },
-  },
+]
+
+export const anyRoute = [
   {
     path: '/:pathMatch(.*)*',
     redirect: '/404',

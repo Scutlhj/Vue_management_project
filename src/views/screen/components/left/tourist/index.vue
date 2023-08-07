@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue'
 import * as echarts from 'echarts'
 import 'echarts-liquidfill'
 defineOptions({
@@ -34,12 +34,12 @@ onMounted(() => {
       itemStyle: {
         opacity: 0.8,
         shadowBlur: 30,
-        shadowColor: 'rgba(71,81,100,0.8)'
+        shadowColor: 'rgba(71,81,100,0.8)',
       },
       emphasis: {
         itemStyle: {
-          opacity: 1
-        }
+          opacity: 1,
+        },
       },
       outline: {
         show: true,
@@ -49,8 +49,8 @@ onMounted(() => {
           borderColor: '#41ae3c',
           borderWidth: 6,
           shadowBlur: 20,
-          shadowColor: 'rgba(65, 174, 60, 1)'
-        }
+          shadowColor: 'rgba(65, 174, 60, 1)',
+        },
       },
       // 中间的数据
       label: {
@@ -61,18 +61,18 @@ onMounted(() => {
         fontWeight: 'bold',
         align: 'center',
         baseline: 'middle',
-        position: 'inside'
+        position: 'inside',
       },
     },
     tooltip: {
-      show: true
+      show: true,
     },
     // 布局组件
     grid: {
       left: 0,
       right: 0,
       top: 0,
-      bottom: 0
+      bottom: 0,
     },
   })
 })
@@ -84,17 +84,25 @@ onMounted(() => {
       <div class="left_title">
         <span>实时游客统计</span>
       </div>
-      <img src="../../../images/dataScreen-title.png" style="height: 7px; width: 68px; display: block; margin-top: 10px;">
+      <img
+        src="../../../images/dataScreen-title.png"
+        style="height: 7px; width: 68px; display: block; margin-top: 10px"
+      />
       <div class="right_title">
-        <span>可容纳总量<span class="number">500000</span>人</span>
+        <span>
+          可容纳总量
+          <span class="number">500000</span>
+          人
+        </span>
       </div>
     </div>
     <div class="tourist_main">
       <div class="tourist_number">
-        <span v-for="(item, index) in touristNumber" :key="index">{{ item }}</span>
+        <span v-for="(item, index) in touristNumber" :key="index">
+          {{ item }}
+        </span>
       </div>
-      <div class="tourist_charts" ref="charts">
-      </div>
+      <div class="tourist_charts" ref="charts"></div>
     </div>
   </div>
 </template>
@@ -108,7 +116,7 @@ onMounted(() => {
   .tourist_title {
     // height: 50px;
     font-size: 18px;
-    color: rgba(#fff, .9);
+    color: rgba(#fff, 0.9);
 
     .right_title {
       float: right;
@@ -148,7 +156,7 @@ onMounted(() => {
 }
 
 .clearfix:after {
-  content: "";
+  content: '';
   display: table;
   clear: both;
 }
