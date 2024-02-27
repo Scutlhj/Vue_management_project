@@ -20,7 +20,7 @@ onMounted(() => {
     // 图表类型选择
     series: {
       type: 'liquidFill',
-      name: '客流量占比',
+      name: '百分比',
       waveAnimation: true,
       animationEasing: 'linear',
       animationDuration: 2500,
@@ -82,7 +82,7 @@ onMounted(() => {
   <div class="tourist_container">
     <div class="tourist_title clearfix">
       <div class="left_title">
-        <span>实时游客统计</span>
+        <span>实时在线统计</span>
       </div>
       <img
         src="../../../images/dataScreen-title.png"
@@ -90,7 +90,7 @@ onMounted(() => {
       />
       <div class="right_title">
         <span>
-          可容纳总量
+          最多同时在线
           <span class="number">500000</span>
           人
         </span>
@@ -125,7 +125,7 @@ onMounted(() => {
       .number {
         color: orange;
         font-size: 16px;
-        margin: 0 5px;
+        margin: 0 3px;
       }
     }
   }

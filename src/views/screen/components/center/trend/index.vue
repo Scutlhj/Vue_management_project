@@ -101,7 +101,7 @@ onMounted(() => {
     ],
     series: [
       {
-        name: '人数',
+        name: '销售额',
         type: 'line',
         symbol: 'circle', // 默认是空心圆（中间是白色的），改成实心圆
         smooth: true,
@@ -145,7 +145,7 @@ onMounted(() => {
   <div class="trend_container">
     <div class="trend_title">
       <div class="left_title">
-        <span>未来30天游客趋势图</span>
+        <span>未来30天销售趋势图</span>
       </div>
       <img
         src="../../../images/dataScreen-title.png"

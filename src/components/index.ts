@@ -8,11 +8,11 @@ const globalComponents = { SvgIcon, Pagination, Category }
 
 export default {
   // 插件的方法必须用install
-  //@ts-ignore
+  //@ts-expect-error typeErr
   install(app) {
     // 全局注册自定义组件
     Object.keys(globalComponents).forEach((key) => {
-      //@ts-ignore
+      //@ts-expect-error typeErr
       app.component(key, globalComponents[key])
     })
     // 全局注册element-plus的图标,此处使用entries方法将对象转为一个键值对数组,

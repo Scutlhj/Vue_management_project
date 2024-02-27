@@ -55,7 +55,7 @@ onMounted(() => {
   <div class="gender_container">
     <div class="gender_title">
       <div class="left_title">
-        <span>男女比例</span>
+        <span>用户男女比例</span>
       </div>
       <img
         src="../../../images/dataScreen-title.png"

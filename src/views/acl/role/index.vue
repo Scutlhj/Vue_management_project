@@ -16,6 +16,7 @@ import { ElMessage } from 'element-plus'
 import { nextTick, onMounted, ref } from 'vue'
 import { getCurrentTime } from '@/utils/time'
 import useLayoutSettingStore from '@/stores/modules/setting'
+import { validatorRoleName } from '@/utils/validator'
 let layoutSettingStore = useLayoutSettingStore()
 let pageNo = ref<number>(1)
 let pageSize = ref<number>(5)
@@ -58,13 +59,6 @@ const getRolePager = async (pager = 1) => {
 const searchRolePager = async () => {
   lockInput.value = true
   getRolePager()
-}
-const validatorRoleName = (rule: any, value: string, callback: Function) => {
-  if (value.trim().length < 2) {
-    callback(new Error('职位名称长度需要大于2位'))
-  } else {
-    callback()
-  }
 }
 const checkRules = {
   roleName: [
@@ -118,7 +112,6 @@ const editPermissions = async (row: RoleData) => {
   )
   if (result.code === 200) {
     rolePermissions.value = result.data
-    console.log(result.data)
     selectedPermissionId.value = getAllCheckedPermissonId(rolePermissions.value)
   } else {
     ElMessage.error('获取权限失败')
@@ -207,7 +200,13 @@ const defaultProps = {
       </el-form>
     </el-card>
     <el-card>
-      <el-button type="primary" size="default" icon="Plus" @click="addRole" v-has="'btn.Role.add'">
+      <el-button
+        type="primary"
+        size="default"
+        icon="Plus"
+        @click="addRole"
+        v-has="'btn.Role.add'"
+      >
         添加职位
       </el-button>
       <el-table :data="rolePager" border style="margin: 20px 0">
@@ -278,7 +277,12 @@ const defaultProps = {
               @confirm="deleteRole(row)"
             >
               <template #reference>
-                <el-button icon="Delete" type="danger" size="small" v-has="'btn.Role.remove'">
+                <el-button
+                  icon="Delete"
+                  type="danger"
+                  size="small"
+                  v-has="'btn.Role.remove'"
+                >
                   删除
                 </el-button>
               </template>

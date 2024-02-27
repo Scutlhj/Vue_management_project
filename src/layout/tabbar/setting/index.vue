@@ -62,26 +62,41 @@ const logout = async () => {
   // 跳转登录页面,这里有一个小功能就是保存退出时的path然后登录后重新跳回此处而不是首页
   $router.push({
     path: '/login',
-    query: { 
+    query: {
       redirect: $route.path,
-      username: username
-    }
+      username: username,
+    },
   })
 }
 </script>
 
 <template>
-  <el-button icon="Refresh" circle @click="layoutSettingStore.changeRefresh()" />
+  <el-button
+    icon="Refresh"
+    circle
+    @click="layoutSettingStore.changeRefresh()"
+  />
   <el-button icon="FullScreen" circle @click="switchFullScreen" />
   <el-popover placement="bottom" title="主题设置" :width="300" trigger="click">
     <el-form label-width="70px" :inline="false" size="default">
       <el-form-item label="主题颜色">
-        <el-color-picker size="default" v-model="color" show-alpha :predefine="predefineColors"
-          @change="changeTheme"></el-color-picker>
+        <el-color-picker
+          size="default"
+          v-model="color"
+          show-alpha
+          :predefine="predefineColors"
+          @change="changeTheme"
+        ></el-color-picker>
       </el-form-item>
       <el-form-item label="暗黑模式">
-        <el-switch size="default" active-icon="Moon" inactive-icon="Sunny" v-model="dark" inline-prompt
-          @change="changeDark" />
+        <el-switch
+          size="default"
+          active-icon="Moon"
+          inactive-icon="Sunny"
+          v-model="dark"
+          inline-prompt
+          @change="changeDark"
+        />
       </el-form-item>
     </el-form>
 
@@ -89,7 +104,10 @@ const logout = async () => {
       <el-button icon="Setting" circle />
     </template>
   </el-popover>
-  <img :src="userStore.avatar" style="width: 32px; height: 32px; border-radius: 50%" />
+  <img
+    :src="userStore.avatar"
+    style="width: 32px; height: 32px; border-radius: 50%"
+  />
   <el-dropdown>
     <span class="el-dropdown-link">
       {{ userStore.username }}

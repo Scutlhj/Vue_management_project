@@ -5,9 +5,9 @@ import { ElMessage } from 'element-plus'
 // 而仓库使用getUserInfo方法时请求用户名与头像时也会经过这个请求拦截器,而这个拦截器本身又使用仓库中的token字段来包装请求头才能获取用户数据
 import useUserStore from '@/stores/modules/user'
 // 创建axios实例
-let request = axios.create({
+const request = axios.create({
   // 基础路径会携带/api
-  //@ts-ignore
+  //@ts-expect-error typeErr
   baseURL: import.meta.env.VITE_APP_BASE_API,
   // 设置超时时间
   timeout: 2000,
@@ -16,7 +16,7 @@ let request = axios.create({
 request.interceptors.request.use((config) => {
   // 在config中的headers属性给服务器携带公共参数
   // 不返回config的话请求发不出去
-  let userStore = useUserStore()
+  const userStore = useUserStore()
   // 有token将将其放在请求头中
   if (userStore.token) {
     config.headers.token = userStore.token
@@ -33,8 +33,7 @@ request.interceptors.response.use(
   (error) => {
     // 失败回调
     let message = ''
-    console.log(error)
-    let status = error.response.status
+    const status = error.response.status
     switch (status) {
       case 401:
         message = 'TOKEN过期'

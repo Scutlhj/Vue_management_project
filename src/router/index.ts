@@ -2,7 +2,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { constantRoute } from './routes'
 // 创建路由器
-let router = createRouter({
+const router = createRouter({
   history: createWebHashHistory(),
   routes: constantRoute,
   // 路由跳转后滚动条立马返回左上角

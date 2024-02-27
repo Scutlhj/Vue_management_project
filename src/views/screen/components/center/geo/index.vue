@@ -22,7 +22,7 @@ onMounted(() => {
     geo: {
       map: 'china',
       roam: false, // 是否开启放大缩小/拖拽功能
-      layoutCenter: ['50%', '65%'], // 地图中心点位置
+      layoutCenter: ['50%', '53%'], // 地图中心点位置
       zoom: 1.2,
       layoutSize: '100%',
       label: {
@@ -82,11 +82,11 @@ onMounted(() => {
           },
         ],
         effect: {
-          show: true,
+          show: false,
           period: 8, //箭头指向速度，值越小速度越快
           trailLength: 0, //特效尾迹长度[0,1]值越大，尾迹越长重
           symbol: planePath, //箭头图标
-          symbolSize: 15, //图标大小
+          symbolSize: 10, //图标大小
         },
         lineStyle: {
           color: '#00eaff',
@@ -123,7 +123,7 @@ onMounted(() => {
       <span class="title_desc">平台高峰预警信息(2条)</span>
     </div>
     <div class="geo_main">
-      <div class="geo_desc">景区实时客流量</div>
+      <div class="geo_desc">物流实时路线</div>
       <div class="geo_charts" ref="charts"></div>
     </div>
   </div>

@@ -1,7 +1,7 @@
 // 登录接口需要携带参数的ts类型
 export interface loginForm {
-  username: String
-  password: String
+  username: string
+  password: string
 }
 interface ResponseData {
   code: number

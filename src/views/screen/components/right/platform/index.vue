@@ -7,19 +7,19 @@ defineOptions({
 let charts = ref()
 const platformData = [
   {
-    name: '智慧文旅',
+    name: '微信',
     value: 400000,
   },
   {
-    name: '携程',
+    name: '其他平台',
     value: 100000,
   },
   {
-    name: '飞猪',
+    name: '银联',
     value: 200000,
   },
   {
-    name: '其他平台',
+    name: '支付宝',
     value: 300000,
   },
 ]
@@ -50,7 +50,7 @@ onMounted(() => {
     series: [
       {
         color: ['#ee3f4d', '#15559a', '#fecc11', '#1ba784'],
-        name: '预约人数',
+        name: '订单数',
         type: 'pie',
         radius: ['55%', '80%'],
         center: ['32%', '50%'],
@@ -122,7 +122,7 @@ onMounted(() => {
   <div class="platform_container">
     <div class="platform_title">
       <div class="left_title">
-        <span>预约渠道数据统计</span>
+        <span>支付平台数据统计</span>
       </div>
       <img
         src="../../../images/dataScreen-title.png"

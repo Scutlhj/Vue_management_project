@@ -5,17 +5,37 @@
       <el-col :span="12" :xs="0"></el-col>
       <el-col :span="12" :xs="24">
         <!-- 配置表单校验时一定要将model和rule添加到form组件上，其次rule的属性名要与model绑定的名要一致，最后prop也得和model属性名对上 -->
-        <el-form class="login_form" :model="loginForm" :rules="rules" ref="loginElForm">
+        <el-form
+          class="login_form"
+          :model="loginForm"
+          :rules="rules"
+          ref="loginElForm"
+        >
           <h1>Hello</h1>
-          <h2>欢迎来到硅谷甄选</h2>
+          <h2>欢迎来到商城后台管理系统</h2>
           <el-form-item prop="username">
-            <el-input :prefix-icon="User" v-model="loginForm.username" clearable></el-input>
+            <el-input
+              :prefix-icon="User"
+              v-model="loginForm.username"
+              clearable
+            ></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input type="password" :prefix-icon="Lock" v-model="loginForm.password" show-password></el-input>
+            <el-input
+              type="password"
+              :prefix-icon="Lock"
+              v-model="loginForm.password"
+              show-password
+            ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button :loading="loading" class="login_btn" size="default" type="primary" @click="login">
+            <el-button
+              :loading="loading"
+              class="login_btn"
+              size="default"
+              type="primary"
+              @click="login"
+            >
               登录
             </el-button>
           </el-form-item>
@@ -34,6 +54,7 @@ import { ElNotification } from 'element-plus'
 import useUserStore from '@/stores/modules/user'
 // 引入时间工具类
 import { getTime } from '@/utils/time'
+import { validatorUserName } from '@/utils/validator'
 let userStore = useUserStore()
 // 编程式导航
 let $router = useRouter()
@@ -47,13 +68,6 @@ let loginElForm = ref()
 
 let loading = ref(false)
 // 配置规则,一个规则就是一个对象
-const validatorUserName = (rule: any, value: string, callback: Function) => {
-  if (/^[a-zA-Z][a-zA-Z0-9]{4,9}$/.test(value)) {
-    callback()
-  } else {
-    callback(new Error('用户名必须以字母开头，长度在五到十位且不含有特殊字符'))
-  }
-}
 const rules = {
   // 在username这里使用自定义规则
   username: [
@@ -73,22 +87,22 @@ const login = async () => {
     // 在这里输出错误提示信息
     // 错误信息的格式是一个对象，其中每个键对应一个表单项，值是一个数组，包含该表单项校验失败的所有错误信息
     // 如"password": [{"message": "密码长度为五到十位","fieldValue": "111111dsadsadas","field": "password"}]
-    /* 此处为两个都错误时的输出,为了方便还是输出特定语句吧
-    {
-      "username": [
-          {
-              "field": "username",
-              "fieldValue": "adminsadkasdjkdsa"
-          }
-      ],
-      "password": [
-          {
-              "message": "密码长度为五到十位",
-              "fieldValue": "111111asdjkasjaskdj",
-              "field": "password"
-          }
-      ]
-    } */
+    // 此处为两个都错误时的输出,为了方便还是输出特定语句吧
+    // {
+    //   "username": [
+    //       {
+    //           "field": "username",
+    //           "fieldValue": "adminsadkasdjkdsa"
+    //       }
+    //   ],
+    //   "password": [
+    //       {
+    //           "message": "密码长度为五到十位",
+    //           "fieldValue": "111111asdjkasjaskdj",
+    //           "field": "password"
+    //       }
+    //   ]
+    // }
     ElNotification({
       type: 'error',
       message: '输入用户名或密码格式错误',
@@ -107,7 +121,6 @@ const login = async () => {
     const username: any = $route.query.username
     // 登录密码正确这个await才不会出错
     if (loginForm.username === username) {
-      console.log('用户名对上了')
       $router.push({ path: redirect || '/' })
     } else {
       $router.push({ path: '/' })

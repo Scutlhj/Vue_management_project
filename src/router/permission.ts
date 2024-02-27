@@ -3,12 +3,12 @@ import router from '.'
 import pinia from '@/stores'
 import useUserStore from '@/stores/modules/user'
 import setting from '@/setting'
-//@ts-ignore
+//@ts-expect-error typeErr
 import nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
 nprogress.configure({ showSpinner: false })
 // 这个文件没有pinia大仓库要手动引入
-let userStore = useUserStore(pinia)
+const userStore = useUserStore(pinia)
 // 全局前置守卫
 router.beforeEach(
   async (
@@ -17,8 +17,8 @@ router.beforeEach(
     next: NavigationGuardNext,
   ) => {
     nprogress.start()
-    let token = userStore.token
-    let username = userStore.username
+    const token = userStore.token
+    const username = userStore.username
     if (token) {
       // 除了登录全部放行
       if (to.path === '/login') {
@@ -50,12 +50,10 @@ router.beforeEach(
   },
 )
 // 全局后置守卫
-router.afterEach(
-  (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
-    document.title = setting.title + ' - ' + to.meta.title
-    nprogress.done()
-  },
-)
+router.afterEach((to: RouteLocationNormalized) => {
+  document.title = setting.title + ' - ' + to.meta.title
+  nprogress.done()
+})
 // 解决问题1:任意路由切换实现路由切换
 // 解决问题2:路由授权
 // 路由:login|404|Any|首页|screen|权限管理|商品管理、

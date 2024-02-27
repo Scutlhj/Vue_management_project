@@ -3,31 +3,31 @@ import rankItem from './rankItem/index.vue'
 import { ref } from 'vue'
 const data = ref<any>([
   {
-    name: '峨眉山',
+    name: '数码产品',
     hot: 80000,
     rank: 1,
     color: 'red',
   },
   {
-    name: '稻城亚丁',
+    name: '生活用品',
     hot: 60000,
     rank: 2,
     color: 'blue',
   },
   {
-    name: '九寨沟',
+    name: '服装',
     hot: 50000,
     rank: 3,
     color: 'green',
   },
   {
-    name: '万里长城',
+    name: '食品',
     hot: 40000,
     rank: 4,
     color: 'orange',
   },
   {
-    name: '北京故宫',
+    name: '图书',
     hot: 30000,
     rank: 5,
     color: 'purple',
@@ -42,7 +42,7 @@ defineOptions({
   <div class="rank_container">
     <div class="rank_title">
       <div class="left_title">
-        <span>热门景区排行</span>
+        <span>热门品类排行</span>
       </div>
       <img
         src="../../../images/dataScreen-title.png"
@@ -52,8 +52,8 @@ defineOptions({
     <div class="rank_main">
       <div class="main_title">
         <span class="rank_number">排名</span>
-        <span class="rank_scenic">景区</span>
-        <span class="rank_bar">预约数量</span>
+        <span class="rank_scenic">类型</span>
+        <span class="rank_bar">销售数量</span>
       </div>
       <div class="main_charts">
         <rankItem v-for="(item, index) in data" :key="index" :item="item" />

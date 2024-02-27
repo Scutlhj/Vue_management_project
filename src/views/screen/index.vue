@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, onBeforeUnmount } from 'vue'
 import Top from './components/top/index.vue'
 import Tourist from './components/left/tourist/index.vue'
 import Gender from './components/left/gender/index.vue'
@@ -19,6 +19,10 @@ const getScale = (w = 1920, h = 1080) => {
 }
 onMounted(() => {
   screen.value.style.transform = `scale(${getScale()}) translate(-50%,-50%)`
+})
+onBeforeUnmount(() => {
+  console.log('销毁')
+  window.onresize = null
 })
 window.onresize = () => {
   screen.value.style.transform = `scale(${getScale()}) translate(-50%,-50%)`

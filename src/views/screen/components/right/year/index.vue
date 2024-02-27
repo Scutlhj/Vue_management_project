@@ -250,7 +250,7 @@ onMounted(() => {
   <div class="year_container">
     <div class="year_title">
       <div class="left_title">
-        <span>年度游客量对比</span>
+        <span>年度活跃用户对比</span>
       </div>
       <img
         src="../../../images/dataScreen-title.png"

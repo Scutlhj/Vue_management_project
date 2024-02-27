@@ -22,10 +22,10 @@ defineOptions({
 <template>
   <div class="top">
     <div class="left">
-      <span class="lbtn" @click="router.push('/')">首页</span>
+      <span class="lbtn" @click="router.replace('/')">首页</span>
     </div>
     <div class="center">
-      <div class="title">智慧旅游可视化大数据展示平台</div>
+      <div class="title">智慧商城可视化大数据展示平台</div>
     </div>
     <div class="right">
       <span class="rbtn">统计报告</span>

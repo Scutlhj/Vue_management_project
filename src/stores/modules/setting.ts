@@ -1,6 +1,6 @@
 // 定义折叠数据的仓库，方便共享
 import { defineStore } from 'pinia'
-let useLayoutSettingStore = defineStore('LayoutSettingStore', {
+const useLayoutSettingStore = defineStore('LayoutSettingStore', {
   state: () => {
     return {
       fold: false,

@@ -25,6 +25,7 @@ import type {
   UploadRawFile,
 } from 'element-plus/es/components/upload/src/upload'
 import { reactive, ref, computed, nextTick } from 'vue'
+import { validatorSpuName } from '@/utils/validator'
 defineOptions({
   name: 'SpuForm',
 })
@@ -66,13 +67,6 @@ let SpuParams = reactive<SpuData>({
   spuImageList: [],
   spuSaleAttrList: [],
 })
-const validatorSpuName = (rule: any, value: any, callback: any) => {
-  if (value.trim().length >= 2) {
-    callback()
-  } else {
-    callback(new Error('SPU名称需要大于1位'))
-  }
-}
 // 表单校验规则,必须要有SPU名称与品牌
 const checkrules = {
   spuName: [{ required: true, trigger: 'blur', validator: validatorSpuName }],

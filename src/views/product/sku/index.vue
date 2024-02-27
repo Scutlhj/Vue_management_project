@@ -142,7 +142,12 @@ onMounted(() => {
         :resizable="false"
         prop="price"
       />
-      <el-table-column label="操作" fixed="right" :resizable="false" align="center">
+      <el-table-column
+        label="操作"
+        fixed="right"
+        :resizable="false"
+        align="center"
+      >
         <template #="{ row, $index }">
           <el-button
             :type="row.isSale === 1 ? 'info' : 'success'"

@@ -7,6 +7,7 @@ import {
 import { PermissionData, PermissionResponseData } from '@/api/acl/menu/type'
 import { ElMessage } from 'element-plus'
 import { nextTick, onMounted, ref } from 'vue'
+import { validatorCode } from '@/utils/validator'
 let dialogFormVisible = ref<boolean>(false)
 let permissions = ref<PermissionData[]>([])
 let form = ref()
@@ -16,13 +17,7 @@ let permissionParams = ref<PermissionData>({
   code: '',
   level: 0,
 })
-const validatorCode = (rule: any, value: string, callback: Function) => {
-  if (/^[a-zA-Z0-9.]+$/.test(value) && value.length > 2) {
-    callback()
-  } else {
-    callback(new Error('权限值只能含有数字、字母与句点,且长度大于2'))
-  }
-}
+
 const rules = {
   name: [
     {
@@ -122,20 +117,47 @@ onMounted(() => {
       <el-table-column label="权限值" prop="code" :resizable="false" />
       <el-table-column label="创建时间" prop="createTime" :resizable="false" />
       <el-table-column label="修改时间" prop="updateTime" :resizable="false" />
-      <el-table-column width="250px" label="操作" align="center" :resizable="false">
+      <el-table-column
+        width="250px"
+        label="操作"
+        align="center"
+        :resizable="false"
+      >
         <template #="{ row, $index }">
-          <el-button size="small" type="success" :disabled="row.level === 4" @click="addPermission(row)"
-            v-has="'btn.Permission.add'">
+          <el-button
+            size="small"
+            type="success"
+            :disabled="row.level === 4"
+            @click="addPermission(row)"
+            v-has="'btn.Permission.add'"
+          >
             {{ row.level === 3 ? '添加功能' : '添加菜单' }}
           </el-button>
-          <el-button size="small" type="primary" :disabled="row.level === 1" @click="editPermission(row)"
-            v-has="'btn.Permission.update'">
+          <el-button
+            size="small"
+            type="primary"
+            :disabled="row.level === 1"
+            @click="editPermission(row)"
+            v-has="'btn.Permission.update'"
+          >
             编辑
           </el-button>
-          <el-popconfirm width="200" confirm-button-text="确认" cancel-button-text="取消" icon="Delete" icon-color="#626AEF"
-            :title="`确认删除${row.name}吗?`" @confirm="deletePermission(row)">
+          <el-popconfirm
+            width="200"
+            confirm-button-text="确认"
+            cancel-button-text="取消"
+            icon="Delete"
+            icon-color="#626AEF"
+            :title="`确认删除${row.name}吗?`"
+            @confirm="deletePermission(row)"
+          >
             <template #reference>
-              <el-button size="small" type="danger" :disabled="row.level === 1" v-has="'btn.Permission.remove'">
+              <el-button
+                size="small"
+                type="danger"
+                :disabled="row.level === 1"
+                v-has="'btn.Permission.remove'"
+              >
                 删除
               </el-button>
             </template>
@@ -143,11 +165,21 @@ onMounted(() => {
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog v-model="dialogFormVisible" :title="permissionParams.id
-        ? `编辑${permissionParams.level === 4 ? '功能' : '菜单'}`
-        : `添加${permissionParams.level === 4 ? '功能' : '菜单'}`
-      " width="35%">
-      <el-form label-width="80px" :model="permissionParams" :rules="rules" ref="form">
+    <el-dialog
+      v-model="dialogFormVisible"
+      :title="
+        permissionParams.id
+          ? `编辑${permissionParams.level === 4 ? '功能' : '菜单'}`
+          : `添加${permissionParams.level === 4 ? '功能' : '菜单'}`
+      "
+      width="35%"
+    >
+      <el-form
+        label-width="80px"
+        :model="permissionParams"
+        :rules="rules"
+        ref="form"
+      >
         <el-form-item label="名称" prop="name">
           <el-input v-model.trim="permissionParams.name" />
         </el-form-item>

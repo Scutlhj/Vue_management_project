@@ -6,7 +6,7 @@ import {
 } from '@/api/product/attr'
 import type { CategoryResponseData } from '@/api/product/attr/type'
 import type { CategoryState } from './types/type'
-let useCategoryStore = defineStore('CategoryStore', {
+const useCategoryStore = defineStore('CategoryStore', {
   state: (): CategoryState => {
     return {
       c1Arr: [],
@@ -19,7 +19,7 @@ let useCategoryStore = defineStore('CategoryStore', {
   },
   actions: {
     async getCategory1() {
-      let result: CategoryResponseData = await reqGetCategory1()
+      const result: CategoryResponseData = await reqGetCategory1()
       if (result.code == 200) {
         this.c1Arr = result.data
         return Promise.resolve('获取一级分类成功')
@@ -28,7 +28,7 @@ let useCategoryStore = defineStore('CategoryStore', {
       }
     },
     async getCategory2() {
-      let result: CategoryResponseData = await reqGetCategory2(
+      const result: CategoryResponseData = await reqGetCategory2(
         this.c1SelectedId as number,
       )
       if (result.code == 200) {
@@ -39,7 +39,7 @@ let useCategoryStore = defineStore('CategoryStore', {
       }
     },
     async getCategory3() {
-      let result: CategoryResponseData = await reqGetCategory3(
+      const result: CategoryResponseData = await reqGetCategory3(
         this.c2SelectedId as number,
       )
       if (result.code == 200) {

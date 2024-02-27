@@ -58,12 +58,12 @@ onMounted(() => {
           show: false,
         },
         data: [
-          { value: 16, name: '10岁以下' },
-          { value: 8, name: '10-18岁' },
-          { value: 12, name: '18-30岁' },
-          { value: 24, name: '30-40岁' },
-          { value: 20, name: '40-60岁' },
-          { value: 20, name: '60岁以上' },
+          { value: 8, name: '10岁以下' },
+          { value: 20, name: '10-18岁' },
+          { value: 24, name: '18-30岁' },
+          { value: 20, name: '30-40岁' },
+          { value: 16, name: '40-60岁' },
+          { value: 12, name: '60岁以上' },
         ].map(function (item) {
           return {
             value: item.value / 100, // 将百分比转换成小数
@@ -80,7 +80,7 @@ onMounted(() => {
   <div class="age_container">
     <div class="age_title">
       <div class="left_title">
-        <span>年龄比例</span>
+        <span>用户年龄比例</span>
       </div>
       <img
         src="../../../images/dataScreen-title.png"

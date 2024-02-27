@@ -145,7 +145,12 @@ watch(
             show-overflow-tooltip
             :resizable="false"
           ></el-table-column>
-          <el-table-column label="操作" :resizable="false" width="250px" align="center">
+          <el-table-column
+            label="操作"
+            :resizable="false"
+            width="250px"
+            align="center"
+          >
             <template #="{ row, $index }">
               <el-button
                 type="primary"

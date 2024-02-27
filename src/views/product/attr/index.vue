@@ -193,7 +193,12 @@ watch(
               </el-tag>
             </template>
           </el-table-column>
-          <el-table-column width="150px" label="操作" :resizable="false" align="center">
+          <el-table-column
+            width="150px"
+            label="操作"
+            :resizable="false"
+            align="center"
+          >
             <template #="{ row, column, $index }">
               <el-button
                 type="warning"

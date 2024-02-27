@@ -12,6 +12,7 @@ import type {
 } from '@/api/product/trademark/type'
 import type { UploadProps } from 'element-plus'
 import { ElMessage } from 'element-plus'
+import { validatorTmName, validatorLogoUrl } from '@/utils/validator'
 // 当前页码
 let pageNo = ref<number>(1)
 // 每页数据
@@ -27,20 +28,6 @@ let trademarkFormData = reactive<TrademarkData>({
   tmName: '',
   logoUrl: '',
 })
-const validatorTmName = (rule: any, value: any, callback: any) => {
-  if (value.trim().length >= 2) {
-    callback()
-  } else {
-    callback(new Error('品牌名称需要大于1位'))
-  }
-}
-const validatorLogoUrl = (rule: any, value: any, callback: any) => {
-  if (value) {
-    callback()
-  } else {
-    callback(new Error('需要上传图片'))
-  }
-}
 // 表单提交的规则
 const checkrules = {
   tmName: [{ required: true, trigger: 'blur', validator: validatorTmName }],
@@ -144,7 +131,12 @@ onMounted(() => {
     <el-card class="box-card">
       <template #header>
         <div class="card-header">
-          <el-button type="primary" icon="Plus" @click="addTrademark" v-has="'btn.Trademark.add'">
+          <el-button
+            type="primary"
+            icon="Plus"
+            @click="addTrademark"
+            v-has="'btn.Trademark.add'"
+          >
             添加品牌
           </el-button>
         </div>

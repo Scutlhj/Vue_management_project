@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, reactive } from 'vue'
 import { reqGetAttr } from '@/api/product/attr'
+import { validatorSkuName, validatorPriceAndWeight } from '@/utils/validator'
 import {
   reqGetSpuImage,
   reqGetSaleAttr,
@@ -86,21 +87,6 @@ const changeImg = (row: SpuImage, index: number) => {
   ElMessage.success(`已切换图片${index + 1}为默认图片`)
 }
 // 表单校验
-const validatorSkuName = (rule: any, value: any, callback: any) => {
-  if (value.trim().length >= 2) {
-    callback()
-  } else {
-    callback(new Error('SKU名称需要大于1位'))
-  }
-}
-const validatorPriceAndWeight = (rule: any, value: any, callback: any) => {
-  let checkExp = /^[1-9]\d*$/
-  if (checkExp.test(value)) {
-    callback()
-  } else {
-    callback(new Error('输入的值必须为正整数'))
-  }
-}
 const checkrules = {
   skuName: [
     { required: true, trigger: 'blur', message: 'SKU名称不能为空' },

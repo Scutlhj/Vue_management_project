@@ -21,6 +21,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import useUserStore from '@/stores/modules/user'
 import useLayoutSettingStore from '@/stores/modules/setting'
 import { getCurrentTime } from '@/utils/time'
+import { validatorName, validatorUserName } from '@/utils/validator'
 let pageNo = ref<number>(1)
 let pageSize = ref<number>(5)
 let total = ref<number>(0)
@@ -65,20 +66,7 @@ let userParams = ref<User>({
 })
 let userDrawer = ref<boolean>(false)
 let roleDrawer = ref<boolean>(false)
-const validatorUserName = (rule: any, value: string, callback: Function) => {
-  if (/^[a-zA-Z][a-zA-Z0-9]{4,9}$/.test(value)) {
-    callback()
-  } else {
-    callback(new Error('用户名必须以字母开头，长度在五到十位且只含有字母数字'))
-  }
-}
-const validatorName = (rule: any, value: string, callback: Function) => {
-  if (value.trim().length < 2) {
-    callback(new Error('用户名称长度必须大于1'))
-  } else {
-    callback()
-  }
-}
+
 const rules = {
   // 在username这里使用自定义规则
   username: [
@@ -153,12 +141,8 @@ const editUser = async (row: User) => {
     Object.assign(userParams.value, JSON.parse(JSON.stringify(result.data)))
     // 判断是否为自己的信息
     if (result.data.username === userStore.username) {
-      console.log(111);
-      
       refresh.value = true
     } else {
-      console.log(222);
-      
       refresh.value = false
     }
   } else {
@@ -284,7 +268,9 @@ onMounted(() => {
       </el-form>
     </el-card>
     <el-card>
-      <el-button type="primary" @click="addUser" v-has="'btn.User.add'">添加用户</el-button>
+      <el-button type="primary" @click="addUser" v-has="'btn.User.add'">
+        添加用户
+      </el-button>
       <el-button
         type="danger"
         @click="batchDeleteUser"
@@ -374,7 +360,12 @@ onMounted(() => {
               @confirm="deleteUser(row)"
             >
               <template #reference>
-                <el-button type="danger" icon="Delete" size="small" v-has="'btn.User.remove'">
+                <el-button
+                  type="danger"
+                  icon="Delete"
+                  size="small"
+                  v-has="'btn.User.remove'"
+                >
                   删除
                 </el-button>
               </template>
